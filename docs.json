@@ -66,6 +66,17 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "Devs Products",
+        "groups": [
+          {
+            "group": "Devs Products",
+            "pages": [
+              "devs/premium-portal-website-template"
+            ]
+          }
+        ]
       }
     ],
     "global": {
