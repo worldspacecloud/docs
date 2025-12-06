@@ -71,9 +71,10 @@
         "tab": "Devs Products",
         "groups": [
           {
-            "group": "Devs Products",
+            "group": "Premium portal website template",
             "pages": [
-              "devs/premium-portal-website-template"
+              "devs/premium-portal-website-template",
+              "devs/premium-portal-website-template/deploy"
             ]
           }
         ]
