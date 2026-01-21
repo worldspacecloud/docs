@@ -1,217 +1,501 @@
 {
-  "openapi": "3.1.0",
+  "openapi": "3.0.3",
   "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
-    "license": {
-      "name": "MIT"
-    },
+    "title": "Arox Profiles API",
+    "description": "API for managing profiles and performing Epic Games (Legendary-style) auth, backed by Firebase.",
     "version": "1.0.0"
   },
   "servers": [
     {
-      "url": "http://sandbox.mintlify.com"
-    }
-  ],
-  "security": [
-    {
-      "bearerAuth": []
+      "url": "http://localhost:3000"
     }
   ],
   "paths": {
-    "/plants": {
-      "get": {
-        "description": "Returns all plants from the system that the user has access to",
-        "parameters": [
+    "/api/profiles/create": {
+      "post": {
+        "summary": "Create a profile",
+        "description": "Creates a profile document in Firestore. Requires Firebase ID token in Authorization header.",
+        "security": [
           {
-            "name": "limit",
-            "in": "query",
-            "description": "The maximum number of results to return",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
+            "firebaseBearer": []
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileCreate"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
-            "description": "Plant response",
+            "description": "Created profile id and data",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Profile"
+                    }
                   }
                 }
               }
             }
           },
           "400": {
-            "description": "Unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Creates a new plant in the store",
-        "requestBody": {
-          "description": "Plant to add to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Plant"
-                }
-              }
-            }
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
           },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+          "500": {
+            "$ref": "#/components/responses/InternalError"
           }
         }
       }
     },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
-        "parameters": [
+    "/api/profiles/delete": {
+      "post": {
+        "summary": "Delete a profile",
+        "description": "Deletes a profile. Requires Firebase ID token in Authorization header.",
+        "security": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "ID of plant to delete",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
+            "firebaseBearer": []
           }
         ],
-        "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "webhooks": {
-    "/plant/webhook": {
-      "post": {
-        "description": "Information about a new plant added to the store",
         "requestBody": {
-          "description": "Plant added to the store",
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPlant"
+                "$ref": "#/components/schemas/ProfileDelete"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Return a 200 status to indicate that the data was received successfully"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ok": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/api/profiles/update": {
+      "post": {
+        "summary": "Update a profile",
+        "description": "Update profile fields. Requires Firebase ID token in Authorization header.",
+        "security": [
+          {
+            "firebaseBearer": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated profile",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ok": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Profile"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/api/profiles/auth/legendary": {
+      "post": {
+        "summary": "Create Legendary-style auth link",
+        "description": "Returns an `arox://auth/<...>` link and the raw Epic auth URL. Requires Firebase ID token.",
+        "security": [
+          {
+            "firebaseBearer": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileAuthRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "arox link and authUrl",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "arox": {
+                      "type": "string"
+                    },
+                    "authUrl": {
+                      "type": "string"
+                    },
+                    "state": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/api/profiles/gettokens": {
+      "get": {
+        "summary": "Fetch stored tokens for a profile (admin)",
+        "description": "Returns stored `auth` tokens for a profile. Requires `x-server-key` header.",
+        "parameters": [
+          {
+            "name": "account-uid",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "profile-id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Auth tokens",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "auth": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/api/profiles/auth/epic/callback": {
+      "get": {
+        "summary": "Epic OAuth callback",
+        "description": "Endpoint that Epic redirects to with `code` and `state`. Exchanges code for tokens and stores them.",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Human readable success message",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalError"
           }
         }
       }
     }
   },
   "components": {
+    "securitySchemes": {
+      "firebaseBearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      },
+      "serverKeyHeader": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-server-key"
+      }
+    },
     "schemas": {
-      "Plant": {
-        "required": [
-          "name"
-        ],
+      "ProfileCreate": {
+        "type": "object",
+        "required": ["name", "account-uid"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "avatar-url": {
+            "type": "string"
+          },
+          "account-uid": {
+            "type": "string"
+          },
+          "pin": {
+            "type": "string",
+            "description": "4 digit numeric PIN (optional)"
+          }
+        }
+      },
+      "ProfileDelete": {
+        "type": "object",
+        "required": ["account-uid", "profile-id"],
+        "properties": {
+          "account-uid": {
+            "type": "string"
+          },
+          "profile-id": {
+            "type": "string"
+          }
+        }
+      },
+      "ProfileUpdate": {
+        "type": "object",
+        "required": ["account-uid", "profile-id"],
+        "properties": {
+          "account-uid": {
+            "type": "string"
+          },
+          "profile-id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "avatar-url": {
+            "type": "string"
+          },
+          "pin": {
+            "type": "string"
+          }
+        }
+      },
+      "ProfileAuthRequest": {
+        "type": "object",
+        "required": ["account-uid", "profile-id"],
+        "properties": {
+          "account-uid": {
+            "type": "string"
+          },
+          "profile-id": {
+            "type": "string"
+          }
+        }
+      },
+      "Profile": {
         "type": "object",
         "properties": {
           "name": {
-            "description": "The name of the plant",
             "type": "string"
           },
-          "tag": {
-            "description": "Tag to specify the type",
+          "avatarUrl": {
+            "type": "string"
+          },
+          "accountUid": {
+            "type": "string"
+          },
+          "pin": {
+            "type": "string"
+          },
+          "uid": {
+            "type": "string"
+          },
+          "createdAt": {
             "type": "string"
           }
         }
       },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
-          },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
+      "responses": {
+        "BadRequest": {
+          "description": "Bad Request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "error": {
+                    "type": "string"
+                  }
+                }
               }
             }
           }
-        ]
-      },
-      "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "message": {
-            "type": "string"
+        },
+        "Unauthorized": {
+          "description": "Unauthorized",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "error": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Forbidden": {
+          "description": "Forbidden",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "error": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "NotFound": {
+          "description": "Not Found",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "error": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "InternalError": {
+          "description": "Internal Server Error",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "error": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
           }
         }
       }
-    },
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
-      }
     }
-  }
+  },
+  "security": [
+    {
+      "firebaseBearer": []
+    }
+  ]
 }
