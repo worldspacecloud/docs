@@ -78,6 +78,153 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "Minecraft",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "minecraft/index",
+              "minecraft/about",
+              "minecraft/jarapi"
+            ]
+          },
+          {
+            "group": "Enhancements",
+            "pages": [
+              "minecraft/enhancements/Anti-X Tools/intro",
+              "minecraft/enhancements/Anti-X Tools/anticheat",
+              "minecraft/enhancements/Anti-X Tools/antiexploit",
+              "minecraft/enhancements/Anti-X Tools/antilag",
+              "minecraft/enhancements/Anti-X Tools/antixray",
+              "minecraft/enhancements/Economy/intro",
+              "minecraft/enhancements/Economy/chest",
+              "minecraft/enhancements/Economy/gui",
+              "minecraft/enhancements/Economy/shop",
+              "minecraft/enhancements/Permissions/breakdown",
+              "minecraft/enhancements/Permissions/plugins",
+              "minecraft/enhancements/Plugins/intro",
+              "minecraft/enhancements/Plugins/Free/auctionhouse",
+              "minecraft/enhancements/Plugins/Free/chestshop",
+              "minecraft/enhancements/Plugins/Free/discordsrv",
+              "minecraft/enhancements/Plugins/Free/dukesmart",
+              "minecraft/enhancements/Plugins/Free/essentialsx",
+              "minecraft/enhancements/Plugins/Free/luckperms",
+              "minecraft/enhancements/Plugins/Free/MiniMOTD",
+              "minecraft/enhancements/Plugins/Free/playerauctions",
+              "minecraft/enhancements/Plugins/Free/playershops",
+              "minecraft/enhancements/Plugins/Free/powerranks",
+              "minecraft/enhancements/Plugins/Free/quickshop",
+              "minecraft/enhancements/Plugins/Free/ultimatetimber",
+              "minecraft/enhancements/Plugins/Free/vault",
+              "minecraft/enhancements/Plugins/Free/worldedit",
+              "minecraft/enhancements/Plugins/Free/worldguard",
+              "minecraft/enhancements/Plugins/Free/znpc",
+              "minecraft/enhancements/Plugins/Premium/citizens",
+              "minecraft/enhancements/Plugins/Premium/litebans",
+              "minecraft/enhancements/Plugins/Premium/zauctionhouse"
+            ]
+          },
+          {
+            "group": "Guides (Minecraft)",
+            "pages": [
+              "minecraft/guides/Minecraft/advertising",
+              "minecraft/guides/Minecraft/sftp",
+              "minecraft/guides/Minecraft/Optimisation/intro",
+              "minecraft/guides/Minecraft/Optimisation/basic",
+              "minecraft/guides/Minecraft/Optimisation/advanced",
+              "minecraft/guides/Minecraft/Plugins/luckperms",
+              "minecraft/guides/Minecraft/Plugins/terra",
+              "minecraft/guides/Minecraft/Plugins/Cinema Mod/intro",
+              "minecraft/guides/Minecraft/Plugins/Cinema Mod/commands",
+              "minecraft/guides/Minecraft/Plugins/Cinema Mod/setup",
+              "minecraft/guides/Minecraft/Plugins/Dynmap/intro",
+              "minecraft/guides/Minecraft/Plugins/Dynmap/setup",
+              "minecraft/guides/Minecraft/Plugins/Dynmap/proxy",
+              "minecraft/guides/Minecraft/Self-Host/Panels/Pterodactyl/intro",
+              "minecraft/guides/Minecraft/Self-Host/Panels/Pterodactyl/node",
+              "minecraft/guides/Minecraft/Self-Host/Panels/Pterodactyl/panel",
+              "minecraft/guides/Minecraft/Self-Host/Panels/Pterodactyl/wings",
+              "minecraft/guides/Minecraft/Self-Host/Panels/Pterodactyl/Addons/index",
+              "minecraft/guides/Minecraft/Self-Host/Panels/Pufferpanel/installation",
+              "minecraft/guides/Minecraft/Self-Host/Panels/Pufferpanel/ssl",
+              "minecraft/guides/Minecraft/Self-Host/Standalone (Java)/docker",
+              "minecraft/guides/Minecraft/Self-Host/Standalone (Java)/linux",
+              "minecraft/guides/Minecraft/Self-Host/Standalone (Java)/win"
+            ]
+          },
+          {
+            "group": "Guides (OVH)",
+            "pages": [
+              "minecraft/guides/OVH/intro",
+              "minecraft/guides/OVH/Core/ovh",
+              "minecraft/guides/OVH/Core/ports",
+              "minecraft/guides/OVH/Core/proxmox",
+              "minecraft/guides/OVH/Core/remote",
+              "minecraft/guides/OVH/Core/vms",
+              "minecraft/guides/OVH/Optional/Configuration/aad",
+              "minecraft/guides/OVH/Optional/Configuration/azure",
+              "minecraft/guides/OVH/Optional/Configuration/hardening",
+              "minecraft/guides/OVH/Optional/Services/docker",
+              "minecraft/guides/OVH/Optional/Services/maas",
+              "minecraft/guides/OVH/Optional/Services/macos",
+              "minecraft/guides/OVH/Optional/Services/uptimekuma",
+              "minecraft/guides/OVH/Optional/Services/Zero Trust/cloudflare"
+            ]
+          },
+          {
+            "group": "Guides (Services)",
+            "pages": [
+              "minecraft/guides/Services/folia",
+              "minecraft/guides/Services/oracle"
+            ]
+          },
+          {
+            "group": "Hosting",
+            "pages": [
+              "minecraft/hosting/intro",
+              "minecraft/hosting/hardware",
+              "minecraft/hosting/os",
+              "minecraft/hosting/panels",
+              "minecraft/hosting/providers",
+              "minecraft/hosting/self",
+              "minecraft/hosting/tls",
+              "minecraft/hosting/types"
+            ]
+          },
+          {
+            "group": "Information",
+            "pages": [
+              "minecraft/information/docs",
+              "minecraft/information/discord",
+              "minecraft/information/eula",
+              "minecraft/information/releases",
+              "minecraft/information/services"
+            ]
+          },
+          {
+            "group": "Tools",
+            "pages": [
+              "minecraft/tools/database",
+              "minecraft/tools/offline-mode",
+              "minecraft/tools/server-software",
+              "minecraft/tools/signed-chat",
+              "minecraft/tools/startup",
+              "minecraft/tools/textures",
+              "minecraft/tools/tunnels"
+            ]
+          },
+          {
+            "group": "Troubleshooting",
+            "pages": [
+              "minecraft/troubleshooting/connectivity",
+              "minecraft/troubleshooting/ip",
+              "minecraft/troubleshooting/java",
+              "minecraft/troubleshooting/latency"
+            ]
+          }
+        ]
       }
     ],
     "global": {
