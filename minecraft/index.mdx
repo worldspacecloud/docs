@@ -1,0 +1,31 @@
+---
+title: Minecraft Admin Wiki
+description: We're setup.md, the Minecraft administration wiki, written by enthusiasts and targeted to the novice.
+template: splash
+hero:
+  tagline: Big news! We're giving the whole site a glow-up that you'll see soon! In the meantime, we're keeping these V3 docs up, but just a quick warning: some pages might be a tiny bit out of date.
+  image:
+    file: '@assets/houston.webp'
+  actions:
+    - text: View the docs
+      link: /docs
+      icon: right-arrow
+      variant: primary
+    - text: View the BETA docs!
+      link: https://preview.setup.md
+      icon: external
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid stagger>
+	<Card title="Super Fast" icon="rocket">
+		Behind the scenes our wiki has lost some weight as is built on the fastest framework to date!
+	</Card>
+	<Card title="Easily Contributable" icon="github">
+		Version 3 of the wiki launches with a focus on improving contribution requirements.
+	</Card>
+	<Card title="Community Backed" icon="discord">
+		We're still backed by the amazing members of the [Admincraft](https://discord.gg/8a3W4BjVDf) community.
+	</Card>
+</CardGrid>

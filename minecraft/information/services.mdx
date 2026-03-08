@@ -1,0 +1,39 @@
+---
+description: Additional resources that are hosted by the setup.md team.
+title: Additional Services
+slug: services
+lastUpdated: 2025-08-28
+sidebar:
+  order: 2
+---
+
+import MainStatusPill from '@components/MainStatusPill.vue'
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
+
+As time has progressed we've continued to identify ways we can help server owners get up and running, setup.md has launched some additional services to help make your life easier.
+
+
+### Server Jar API
+
+We took a cool idea produced by PenguiLoader on GitHub and we fixed some bugs then made it faster by distributing the workload to Cloudflare workers and running it on their amazing edge network.
+
+#### Quickstart
+
+The base domain is `https://jar.setup.md`
+
+The subsequent URL that follows is syntaxed as below.
+
+`/download/{SOFTWARE}/{VERSION}/{BUILD}`
+
+To grab the latest paper .jar download.
+
+`GET https://jar.setup.md/download/paper/latest/latest`
+
+To grab the latest vanilla server.jar download link. (no build parameter required)
+
+`GET https://jar.setup.md/download/vanilla/latest`
+
+ <CardGrid>
+  <LinkCard title="polish-penguin-dev/MC-SRV-DL-API" href="https://github.com/polish-penguin-dev/MC-SRV-DL-API" />
+  <LinkCard title="setupmd/mc-jar-api" href="https://github.com/setupmd/mc-jar-api" />
+</CardGrid>
